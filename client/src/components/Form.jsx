@@ -8,21 +8,32 @@ const Form = ({ socket, message, setMessage, messages, setMessages }) => {
       from: "me",
     };
 
-    setMessages([newMessage, ...messages]);
+    setMessages([...messages, newMessage]);
     setMessage("");
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          onChange={(e) => setMessage(e.target.value)}
-          value={message}
-        />
-        <button type="submit">Send</button>
+    <div className="flex h-1/6 text-center items-center justify-center bg-gray-50">
+      <form onSubmit={handleSubmit} className="w-full px-10">
+        <div class="relative">
+          <input
+            type="search"
+            id="search"
+            onChange={(e) => setMessage(e.target.value)}
+            value={message}
+            className="block py-4 pl-8 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Message"
+            required
+          />
+          <button
+            type="submit"
+            className="text-white absolute right-2.5 bottom-2.5 bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
+          >
+            Send
+          </button>
+        </div>
       </form>
-    </>
+    </div>
   );
 };
 

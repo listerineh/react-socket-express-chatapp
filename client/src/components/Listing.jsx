@@ -1,14 +1,21 @@
 const Listing = ({ messages }) => {
   return (
-    <>
-      {messages.map((message, index) => (
-        <div key={index}>
-          <p>
-            {message.from}: {message.body}
-          </p>
-        </div>
-      ))}
-    </>
+    <div className="bg-indigo-100 h-5/6 overflow-y-scroll">
+      <div className="flow-root p-5">
+        {messages.map((message, index) => (
+          <div
+            key={index}
+            className={`${
+              message.from.startsWith("me") ? "float-right" : "float-left"
+            } bg-white w-1/2 text-black rounded-lg p-2 m-2`}
+          >
+            <span className="text-sm text-indigo-600">{message.from}</span>:
+            <br />
+            {message.body}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

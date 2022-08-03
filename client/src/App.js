@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import io from "socket.io-client";
 import Form from "./components/Form";
 import Listing from "./components/Listing";
-import "./App.css";
 
 const socket = io("http://localhost:4000");
 
@@ -11,15 +10,15 @@ function App() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    const reciveMessage = (msg) => setMessages([msg, ...messages]);
-
+    const reciveMessage = (msg) => setMessages([...messages, msg]);
     socket.on("message", reciveMessage);
 
     return () => socket.off("message", reciveMessage);
   }, [messages]);
 
   return (
-    <div className="App">
+    <div className="h-screen text-white">
+      <Listing messages={messages} />
       <Form
         socket={socket}
         message={message}
@@ -27,7 +26,6 @@ function App() {
         messages={messages}
         setMessages={setMessages}
       />
-      <Listing messages={messages} />
     </div>
   );
 }
