@@ -3,9 +3,11 @@ const Form = ({ socket, message, setMessage, messages, setMessages }) => {
     e.preventDefault();
     socket.emit("message", message);
 
+    const date = new Date();
     const newMessage = {
       body: message,
       from: "me",
+      time: `${date.getHours()}:${date.getMinutes()}`,
     };
 
     setMessages([...messages, newMessage]);

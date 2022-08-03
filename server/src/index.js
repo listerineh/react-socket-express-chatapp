@@ -21,9 +21,11 @@ io.on("connection", (socket) => {
   console.log("User " + socket.id + " connected!");
 
   socket.on("message", (message) => {
+    const date = new Date();
     socket.broadcast.emit("message", {
       body: message,
       from: socket.id,
+      time: `${date.getHours()}:${date.getMinutes()}`,
     });
   });
 });
