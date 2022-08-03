@@ -19,6 +19,10 @@ app.use(morgan("dev"));
 
 io.on("connection", (socket) => {
   console.log("User " + socket.id + " connected!");
+
+  socket.on("message", (message) => {
+    socket.broadcast.emit("message", message);
+  });
 });
 
 server.listen(PORT);
