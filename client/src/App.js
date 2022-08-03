@@ -8,19 +8,26 @@ const socket = io("http://localhost:4000");
 
 function App() {
   const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    const reciveMessage = (message) => console.log(message);
+    const reciveMessage = (msg) => setMessages([msg, ...messages]);
 
     socket.on("message", reciveMessage);
 
     return () => socket.off("message", reciveMessage);
-  }, []);
+  }, [messages]);
 
   return (
     <div className="App">
-      <Form socket={socket} message={message} setMessage={setMessage} />
-      <Listing />
+      <Form
+        socket={socket}
+        message={message}
+        setMessage={setMessage}
+        messages={messages}
+        setMessages={setMessages}
+      />
+      <Listing messages={messages} />
     </div>
   );
 }

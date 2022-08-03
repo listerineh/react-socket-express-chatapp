@@ -21,7 +21,10 @@ io.on("connection", (socket) => {
   console.log("User " + socket.id + " connected!");
 
   socket.on("message", (message) => {
-    socket.broadcast.emit("message", message);
+    socket.broadcast.emit("message", {
+      body: message,
+      from: socket.id,
+    });
   });
 });
 

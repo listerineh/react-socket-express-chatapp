@@ -1,9 +1,13 @@
-import { useEffect } from "react";
-
-const Listing = () => {
+const Listing = ({ messages }) => {
   return (
     <>
-      <h1></h1>
+      {messages.map((message, index) => (
+        <div key={index}>
+          <p>
+            {message.from}: {message.body}
+          </p>
+        </div>
+      ))}
     </>
   );
 };

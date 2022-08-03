@@ -1,8 +1,14 @@
-const Form = ({ socket, message, setMessage }) => {
+const Form = ({ socket, message, setMessage, messages, setMessages }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     socket.emit("message", message);
 
+    const newMessage = {
+      body: message,
+      from: "me",
+    };
+
+    setMessages([newMessage, ...messages]);
     setMessage("");
   };
 
