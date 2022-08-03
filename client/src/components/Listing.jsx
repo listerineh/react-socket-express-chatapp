@@ -22,10 +22,8 @@ const Listing = ({ messages }) => {
               message.from.startsWith("me") ? "float-right" : "float-left"
             } bg-white w-1/2 text-black rounded-lg shadow py-2 px-3 m-2 break-words`}
           >
-            <span className="text-sm text-indigo-600">{message.from}</span>:
-            <br />
-            {message.body}
-            <br />
+            <div className="text-sm text-indigo-600">{message.from}</div>
+            <div className="">{message.body}</div>
             <div className="text-right text-indigo-800 font-semibold text-xs">
               {formatedDate(message.time)}
             </div>
