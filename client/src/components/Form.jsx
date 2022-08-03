@@ -23,6 +23,7 @@ const Form = ({ socket, message, setMessage, messages, setMessages }) => {
             value={message}
             className="block py-4 pl-8 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Message"
+            autocomplete="off"
             required
           />
           <button
