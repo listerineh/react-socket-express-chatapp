@@ -17,7 +17,7 @@ const Form = ({ socket, message, setMessage, messages, setMessages }) => {
   return (
     <div className="flex h-1/6 text-center items-center justify-center bg-gray-50">
       <form onSubmit={handleSubmit} className="w-full px-10">
-        <div class="relative">
+        <div className="relative">
           <input
             type="search"
             id="search"
@@ -25,7 +25,7 @@ const Form = ({ socket, message, setMessage, messages, setMessages }) => {
             value={message}
             className="block py-4 pl-8 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Message"
-            autocomplete="off"
+            autoComplete="off"
             required
           />
           <button

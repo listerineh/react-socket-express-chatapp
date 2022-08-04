@@ -1,4 +1,4 @@
-const Listing = ({ messages }) => {
+const Listing = ({ messages, userId }) => {
   const formatedDate = (date) => {
     const splittedDate = date.split(":");
     var hours = Number(splittedDate[0]);
@@ -13,14 +13,18 @@ const Listing = ({ messages }) => {
   };
 
   return (
-    <div className="bg-indigo-100 h-5/6 overflow-y-scroll scroll-smooth">
+    <div className="bg-indigo-100 h-4/6 overflow-y-scroll scroll-smooth">
       <div className="flow-root p-5">
         {messages.map((message, index) => (
           <div
             key={index}
             className={`${
-              message.from.startsWith("me") ? "float-right" : "float-left"
-            } bg-white w-1/2 text-black rounded-lg shadow py-2 px-3 m-2 break-words`}
+              message.from.startsWith("server")
+                ? "float-left bg-indigo-300 w-1/2 text-white"
+                : message.from.startsWith("me")
+                ? "float-right bg-white w-1/2 text-black"
+                : "float-left bg-white w-1/2 text-black"
+            }  rounded-lg shadow py-2 px-3 m-2 break-words`}
           >
             <div className="text-sm text-indigo-600">{message.from}</div>
             <div className="">{message.body}</div>
