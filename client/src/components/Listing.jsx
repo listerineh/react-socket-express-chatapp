@@ -13,7 +13,7 @@ const Listing = ({ messages }) => {
   };
 
   return (
-    <div className="bg-indigo-100 dark:bg-zinc-900 h-4/6 overflow-y-scroll scroll-smooth">
+    <div className="bg-indigo-100 dark:bg-zinc-900 h-4/6 overflow-auto scroll-smooth">
       <div className="flow-root p-5">
         {messages.map((message, index) => (
           <div
