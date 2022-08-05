@@ -22,7 +22,7 @@ io.on("connection", (socket) => {
   const date = new Date();
 
   socket.emit("connection", socket.id);
-  socket.emit("message", {
+  socket.broadcast.emit("message", {
     body: `User ${socket.id} connected!`,
     from: "server",
     time: `${date.getHours()}:${date.getMinutes()}`,
