@@ -32,7 +32,7 @@ const Form = ({ socket, message, setMessage, messages, setMessages }) => {
           />
           <button
             type="submit"
-            className="text-white absolute right-2.5 bottom-2.5 bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
+            className="text-white absolute right-2.5 bottom-2.5 bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-2xl text-sm px-4 py-2"
           >
             <ChevronDoubleRightIcon
               className="block h-4 w-4"
