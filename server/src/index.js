@@ -44,6 +44,7 @@ io.on("connection", (socket) => {
       from: "server",
       time: `${date.getHours()}:${date.getMinutes()}`,
     });
+    console.log("User " + socket.id + " disconnected!");
   });
 });
 
