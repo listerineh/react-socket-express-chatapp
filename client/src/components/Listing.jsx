@@ -1,6 +1,4 @@
-
 import { useEffect, useRef } from "react";
-
 
 const Listing = ({ messages }) => {
   const messagesEndRef = useRef(null);
@@ -19,7 +17,6 @@ const Listing = ({ messages }) => {
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView();
-    
   }, [messages]);
 
   return (
@@ -43,15 +40,10 @@ const Listing = ({ messages }) => {
             </div>
           </div>
         ))}
-
-        
-
       </div>
 
       <div ref={messagesEndRef} />
-
     </div>
-
   );
 };
 
