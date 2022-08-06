@@ -1,4 +1,9 @@
+
+import { useEffect, useRef } from "react";
+
+
 const Listing = ({ messages }) => {
+  const messagesEndRef = useRef(null);
   const formatedDate = (date) => {
     const splittedDate = date.split(":");
     var hours = Number(splittedDate[0]);
@@ -11,6 +16,11 @@ const Listing = ({ messages }) => {
 
     return `${hours}:${minutes} ${newformat}`;
   };
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView();
+    
+  }, [messages]);
 
   return (
     <div className="bg-indigo-100 dark:bg-zinc-900 h-4/6 overflow-auto scroll-smooth">
@@ -33,8 +43,15 @@ const Listing = ({ messages }) => {
             </div>
           </div>
         ))}
+
+        
+
       </div>
+
+      <div ref={messagesEndRef} />
+
     </div>
+
   );
 };
 
