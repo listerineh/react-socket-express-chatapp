@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
-import Form from "./components/Form";
-import Listing from "./components/Listing";
-import Topnav from "./components/Topnav";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 const socket = io("http://localhost:4000");
 
@@ -10,6 +9,7 @@ function App() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [userId, setUserId] = useState("");
+  const [logged, setLogged] = useState(false);
 
   const [theme, setTheme] = useState(null);
 
@@ -29,10 +29,6 @@ function App() {
     }
   }, [theme]);
 
-  const handleThemeSwitch = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
   useEffect(() => {
     const reciveConnection = (userId) => {
       setUserId(userId);
@@ -49,22 +45,23 @@ function App() {
     return () => socket.off("message", reciveMessage);
   }, [messages]);
 
-  return (
-    <div className="h-screen text-white">
-      <Topnav
-        userId={userId}
-        theme={theme}
-        handleThemeSwitch={handleThemeSwitch}
-      />
-      <Listing messages={messages} />
-      <Form
-        socket={socket}
-        message={message}
-        setMessage={setMessage}
-        messages={messages}
-        setMessages={setMessages}
-      />
-    </div>
+  const handleThemeSwitch = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  return logged ? (
+    <Home
+      userId={userId}
+      theme={theme}
+      handleThemeSwitch={handleThemeSwitch}
+      socket={socket}
+      message={message}
+      setMessage={setMessage}
+      messages={messages}
+      setMessages={setMessages}
+    />
+  ) : (
+    <Login socket={socket} logged={logged} setLogged={setLogged} />
   );
 }
 
