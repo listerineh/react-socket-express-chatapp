@@ -20,8 +20,8 @@ const Listing = ({ messages }) => {
   }, [messages]);
 
   return (
-    <div className="bg-indigo-100 dark:bg-zinc-900 h-4/6 overflow-auto scroll-smooth">
-      <div className="flow-root p-5">
+    <div className="h-auto w-screen grow bg-indigo-100 dark:bg-zinc-900 scrollbar-thin scrollbar-thumb-indigo-100 scrollbar-track-indigo-100 dark:scrollbar-thumb-zinc-900 dark:scrollbar-track-zinc-900 overflow-y-scroll my-24">
+      <div className="flow-root w-full p-5">
         {messages.map((message, index) => (
           <div
             key={index}
