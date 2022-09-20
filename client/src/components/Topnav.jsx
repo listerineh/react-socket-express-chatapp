@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MoonIcon, SunIcon, UserIcon } from "@heroicons/react/outline";
+import { CogIcon } from "@heroicons/react/outline";
 
 const Topnav = ({ userId, theme, handleThemeSwitch }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,15 +20,15 @@ const Topnav = ({ userId, theme, handleThemeSwitch }) => {
               onClick={handleOpenDropdown}
               className="text-white text-lg p-2 "
             >
-              <UserIcon className="block h-6 w-6" aria-hidden="true" />
+              <CogIcon className="block h-6 w-6" aria-hidden="true" />
             </button>
             <div
               className={`${
                 !isOpen ? "hidden" : "absolute right-3 top-20"
               } w-44 font-normal rounded divide-y divide-gray-100 shadow bg-indigo-500 `}
             >
-              <ul className="py-1 text-md font-thin text-white">
-                <li className="block py-2 px-4 hover:bg-indigo-400">
+              <ul className="py-1 font-thin text-white">
+                <li className="block text-md py-2 px-4 hover:bg-indigo-400">
                   Logged as: <span className="uppercase">{userId}</span>
                 </li>
                 <li className="block py-2 px-4 hover:bg-indigo-400">
