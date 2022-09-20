@@ -17,7 +17,7 @@ const Form = ({ socket, message, setMessage, messages, setMessages }) => {
   };
 
   return (
-    <div className="flex h-1/6 text-center items-center justify-center bg-gray-50 dark:bg-zinc-700">
+    <div className="fixed bottom-0 flex h-24 w-screen text-center items-center justify-center bg-gray-50 dark:bg-zinc-700">
       <form onSubmit={handleSubmit} className="w-full px-10">
         <div className="relative">
           <input

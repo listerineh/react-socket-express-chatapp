@@ -9,7 +9,7 @@ const Topnav = ({ userId, theme, handleThemeSwitch }) => {
   };
 
   return (
-    <div className="h-1/6 bg-indigo-800 dark:bg-indigo-900 flex text-center items-center justify-center">
+    <div className="fixed flex h-24 w-screen bg-indigo-800 dark:bg-indigo-900 text-center items-center justify-center">
       <div className="flow-root p-5 w-full">
         <div className="float-left text-white sm:text-4xl text-xl">
           Socket ChatApp
@@ -45,13 +45,8 @@ const Topnav = ({ userId, theme, handleThemeSwitch }) => {
                   </button>
                 </li>
               </ul>
-              <div className="py-1">
-                <a
-                  href="#"
-                  className="block py-2 px-4 hover:bg-red-400 text-white uppercase"
-                >
-                  Sign out
-                </a>
+              <div className="block py-3 px-4 hover:bg-red-400 text-white uppercase">
+                Sign out
               </div>
             </div>
           </div>
