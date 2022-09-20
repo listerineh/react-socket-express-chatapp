@@ -4,6 +4,7 @@
 - [Stack](#stack)
 - [Installation & Setup](#installation--setup)
     - [Requirenments](#requirenments)
+    - [Installation](#installation)
     - [Steps](#steps)
     - [Setup the project](#setup-the-project)
 - [Run the project](#run-the-project)
@@ -30,6 +31,50 @@ We're trying to create a web application similar to Discord just for fun and lea
 - Git
 - Node 16.x
 - Make
+
+### Installation
+
+- Git
+
+Use the following [tutorial](https://www.atlassian.com/es/git/tutorials/install-git).
+
+- Node
+
+Download Node file that corresponds to your OS in the following [link](https://nodejs.org/es/download/) and install it.
+
+- Make
+
+#### For windows:
+
+In the powershell, run:
+
+```
+Run Get-ExecutionPolicy
+```
+
+If it returns Restricted, then run:
+
+```
+Set-ExecutionPolicy AllSigned
+```
+
+or:
+
+```
+Set-ExecutionPolicy Bypass -Scope Process
+```
+
+Later, in the same powershell terminal to install chocolatey run:
+
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+To finish, open a new powershell terminal and run:
+
+```
+choco install make
+```
 
 ### Steps
 
