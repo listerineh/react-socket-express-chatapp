@@ -49,7 +49,7 @@ Download Node file that corresponds to your OS in the following [link](https://n
 In the powershell, run:
 
 ```
-Run Get-ExecutionPolicy
+Get-ExecutionPolicy
 ```
 
 If it returns Restricted, then run:
