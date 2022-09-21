@@ -13,7 +13,7 @@ const Home = ({
   setMessages,
 }) => {
   return (
-    <div className="h-screen">
+    <div className="flex min-h-screen max-h-screen h-screen w-screen flex-col">
       <Topnav
         userId={userId}
         theme={theme}
