@@ -16,7 +16,12 @@ const Login = ({ socket, logged, setLogged }) => {
     } else {
       socket.emit("login", { user: user, password: password });
       socket.on("login", function (finded) {
-        setLogged(finded);
+        if (finded) {
+          localStorage.setItem("user", finded);
+          setLogged(finded);
+        } else {
+          setLogged(finded);
+        }
       });
     }
 
