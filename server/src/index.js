@@ -4,12 +4,19 @@ import http from "http";
 import cors from "cors";
 import sqlite3 from "sqlite3";
 import { Server as SocketServer } from "socket.io";
+import session from "express-session";
 import { PORT } from "./config.js";
+import { setSession, destroySession } from "./session.js";
 
 const app = express();
 const server = http.createServer(app);
 
 const db = new sqlite3.Database("database.sqlite");
+const shareSession = session({
+  secret: "socketchat",
+  resave: false,
+  saveUninitialized: true,
+});
 
 db.serialize(function () {
   db.run(
@@ -17,18 +24,25 @@ db.serialize(function () {
   );
 });
 
-const io = new SocketServer(server, {
-  cors: {
-    origin: "http://localhost:3000",
-  },
-});
 
 app.use(cors());
 app.use(morgan("dev"));
+app.use(shareSession);
+
+const io = new SocketServer(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    credentials: true
+  }
+});
+
+io.use((socket, next) => {
+  shareSession(socket.handshake, {}, next);
+  next();
+});
 
 io.on("connection", (socket) => {
   var USER;
-
   socket.on("message", (message) => {
     const date = new Date();
     socket.broadcast.emit("message", {
@@ -51,6 +65,7 @@ io.on("connection", (socket) => {
         if (rows.length > 0) {
           const date = new Date();
           USER = user.user;
+          setSession(user);
           socket.emit("login", true);
           socket.emit("connection", USER);
           socket.broadcast.emit("message", {
@@ -73,6 +88,7 @@ io.on("connection", (socket) => {
         from: "server",
         time: `${date.getHours()}:${date.getMinutes()}`,
       });
+      destroySession(socket);
     }
   });
 });

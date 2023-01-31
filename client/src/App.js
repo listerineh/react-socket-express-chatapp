@@ -3,16 +3,17 @@ import io from "socket.io-client";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 
-const socket = io("http://localhost:4000");
+const socket = io("http://localhost:4000", {
+  withCredentials: true
+});
 
 function App() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [userId, setUserId] = useState("");
-  const [logged, setLogged] = useState(false);
-
+  const [logged, setLogged] = useState(null);
+  
   const [theme, setTheme] = useState(null);
-
   useEffect(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setTheme("dark");
@@ -20,7 +21,7 @@ function App() {
       setTheme("light");
     }
   }, []);
-
+  
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -28,23 +29,30 @@ function App() {
       document.documentElement.classList.remove("dark");
     }
   }, [theme]);
-
+  
   useEffect(() => {
     const reciveConnection = (userId) => {
       setUserId(userId);
     };
     socket.on("connection", reciveConnection);
-
     return () => socket.off("connection", reciveConnection);
   }, []);
 
   useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setLogged(true);
+    }
+  }, []);
+
+
+  useEffect(() => {
     const reciveMessage = (msg) => setMessages([...messages, msg]);
     socket.on("message", reciveMessage);
-
+    
     return () => socket.off("message", reciveMessage);
   }, [messages]);
-
+  
   const handleThemeSwitch = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
